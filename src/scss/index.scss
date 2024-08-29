@@ -2,17 +2,20 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 // Dina egna anpassade stilar
+.body {
+  background-color: #0f79e4;
+}
 .navbar {
-  background-color: #0b6fd4; // Mörk bakgrundsfärg
+  background-color: #65b849; // Mörk bakgrundsfärg
   .navbar-brand {
-    color: #f8f9fa; // Vit färg för brand-texten
+    color: #aa098a; // Vit färg för brand-texten
     &:hover {
-      color: #adb5bd; // Ljusgrå färg vid hover
+      color: #0979e8; // Ljusgrå färg vid hover
     }
   }
 
   .navbar-nav .nav-link {
-    color: #f8f9fa; // Vit färg för nav-links
+    color: #077bef; // Vit färg för nav-links
     &:hover {
       color: #adb5bd; // Ljusgrå färg vid hover
     }
