@@ -1,0 +1,22 @@
+{
+  "name": "semester-project-2",
+  "version": "1.0.0",
+  "description": "To take the skills learned over the past three semesters and create an auction website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sass src/scss:dist/css",
+    "start": "concurrently \"sass --watch src/scss:dist/css\" \"live-server\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "live-server": "^1.2.0",
+    "prettier": "3.3.3"
+  }
+}

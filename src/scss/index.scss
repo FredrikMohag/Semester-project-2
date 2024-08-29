@@ -1,0 +1,27 @@
+// Importera Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Dina egna anpassade stilar
+.navbar {
+  background-color: #0b6fd4; // Mörk bakgrundsfärg
+  .navbar-brand {
+    color: #f8f9fa; // Vit färg för brand-texten
+    &:hover {
+      color: #adb5bd; // Ljusgrå färg vid hover
+    }
+  }
+
+  .navbar-nav .nav-link {
+    color: #f8f9fa; // Vit färg för nav-links
+    &:hover {
+      color: #adb5bd; // Ljusgrå färg vid hover
+    }
+  }
+
+  .navbar-toggler {
+    border-color: #f8f9fa; // Vit färg på toggle-knappen
+    .navbar-toggler-icon {
+      background-image: url("path/to/your/icon.svg"); // Egen ikon för toggling
+    }
+  }
+}
