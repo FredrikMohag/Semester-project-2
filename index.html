@@ -3,47 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!-- Länka till Bootstrap CSS -->
+    <title>Auction</title>
     <link rel="stylesheet" href="./dist/css/index.css" />
     <script
       src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">My Website</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <!-- Inkludera Bootstrap JS -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <!-- Logotyp -->
+          <a class="navbar-brand" href="#">
+            <img
+              src="images/logo.png"
+              alt="Logo"
+              class="d-inline-block align-text-top"
+              style="height: 40px"
+            />
+          </a>
+
+          <!-- Toggler-knapp för hamburgermenyn -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Navbar-innehåll som kan kollapsa -->
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Sökfunktion -->
+            <form class="d-flex navbar-search mx-auto my-2 my-lg-0">
+              <div class="input-wrapper d-flex w-100">
+                <i class="bi bi-search align-self-center me-2"></i>
+                <input
+                  class="form-control"
+                  type="search"
+                  placeholder="Find your favourite item"
+                  aria-label="Search"
+                />
+              </div>
+            </form>
+
+            <!-- Navbar-länkar -->
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Log In</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="custom-line"></div>
+    </header>
+    <!-- Footer -->
+    <footer class="bg-light text-dark py-2">
+      <hr class="custom-line-footer" />
+      <div class="container-fluid text-end small footer-text">
+        Site designed and developed by Fredrik Mohag Håkansson. Copyright ©
+        2024
+      </div>
+    </footer>
   </body>
 </html>

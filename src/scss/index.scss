@@ -1,30 +1,98 @@
 // Importera Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
-// Dina egna anpassade stilar
-.body {
-  background-color: #0f79e4;
+body,
+footer {
+  padding-left: 100px;
+  padding-right: 100px;
 }
-.navbar {
-  background-color: #65b849; // Mörk bakgrundsfärg
-  .navbar-brand {
-    color: #aa098a; // Vit färg för brand-texten
-    &:hover {
-      color: #0979e8; // Ljusgrå färg vid hover
-    }
-  }
+// sökfunktionen
+.navbar-search {
+  flex: 1;
+  max-width: 500px; /* Maximal bredd på sökformuläret */
+}
+.navbar-search input {
+  width: 100%;
+}
+.navbar-search .form-control:focus {
+  border-color: #0404047f; /* Ändra detta till önskad kantfärg */
+  outline: none; /* Ta bort den blå outline */
+  box-shadow: none; /* Ta bort den blå skuggan som vissa webbläsare lägger till */
+}
+.input-wrapper {
+  position: relative;
+  margin-left: 100px;
+}
 
-  .navbar-nav .nav-link {
-    color: #077bef; // Vit färg för nav-links
-    &:hover {
-      color: #adb5bd; // Ljusgrå färg vid hover
-    }
-  }
+.input-wrapper .form-control {
+  padding-left: 70px; /* Skapar utrymme för ikonen */
+  border-radius: 50px; /* Rundar hörnen */
+}
 
-  .navbar-toggler {
-    border-color: #f8f9fa; // Vit färg på toggle-knappen
-    .navbar-toggler-icon {
-      background-image: url("path/to/your/icon.svg"); // Egen ikon för toggling
-    }
+.input-wrapper .bi-search {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #080808;
+  font-size: 18px;
+}
+// hambugermeny
+.navbar-toggler:focus {
+  outline: none; /* Tar bort den blå standard-outline */
+  box-shadow: none; /* Tar bort eventuell skugga som visas vid fokus */
+}
+.navbar-toggler {
+  border: none; /* Tar bort default kantlinje */
+  background: none; /* Tar bort default bakgrund */
+}
+// linjen
+.custom-line {
+  margin: 0; /* Tar bort eventuell extra marginal */
+  height: 1px; /* Gör linjen tunn */
+  background-color: #00000040; /* Färg på linjen */
+  width: 100vw; /* Täcker hela viewportens bredd */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+// footer
+footer {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.footer-text {
+  font-size: 0.7rem;
+  padding-top: 15px;
+  text-align: right;
+}
+.custom-line-footer {
+  margin: 0;
+  height: 1px;
+  border: none;
+  background-color: #000;
+  width: calc(
+    100% + 200px
+  ); /* Täcker hela viewport-bredden inklusive padding */
+  position: relative;
+  left: -100px; /* Justerar för paddingen på footer */
+}
+
+// Media
+
+@media (max-width: 768px) {
+  body,
+  footer {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .input-wrapper {
+    margin-left: 0px;
+  }
+  .footer-text {
+    font-size: 8px;
   }
 }
