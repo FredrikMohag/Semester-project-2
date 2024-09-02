@@ -11971,6 +11971,11 @@ footer {
   padding-right: 100px;
 }
 
+.navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl, .navbar .container-xxl {
+  padding-left: 0; /* Ta bort padding från container-fluid */
+  padding-right: 0; /* Ta bort padding från container-fluid */
+}
+
 .navbar-search {
   flex: 1;
   max-width: 500px; /* Maximal bredd på sökformuläret */
@@ -12042,27 +12047,18 @@ footer {
 }
 
 footer {
+  position: relative;
   width: 100%;
   height: 10%;
-  position: absolute;
   bottom: 0;
   left: 0;
 }
 
 .footer-text {
   font-size: 0.7rem;
-  padding-top: 15px;
+  padding: 20px;
+  margin-left: 120px;
   text-align: right;
-}
-
-.custom-line-footer {
-  margin: 0;
-  height: 1px;
-  border: none;
-  background-color: #000;
-  width: calc(100% + 200px); /* Täcker hela viewport-bredden inklusive padding */
-  position: relative;
-  left: -100px; /* Justerar för paddingen på footer */
 }
 
 @media (max-width: 768px) {
@@ -12071,10 +12067,15 @@ footer {
     padding-left: 0px;
     padding-right: 0px;
   }
+  .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl, .navbar .container-xxl {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .input-wrapper {
     margin-left: 0px;
   }
   .footer-text {
     font-size: 8px;
+    margin-left: 10px;
   }
 }/*# sourceMappingURL=index.css.map */
