@@ -19,6 +19,9 @@ footer {
   outline: none; /* Ta bort den blå outline */
   box-shadow: none; /* Ta bort den blå skuggan som vissa webbläsare lägger till */
 }
+.form-control {
+  font-size: 12px;
+}
 .input-wrapper {
   position: relative;
   margin-left: 100px;
@@ -56,6 +59,19 @@ footer {
   left: 50%;
   transform: translateX(-50%);
 }
+// färgade rektangel
+.colored-box {
+  background-color: #e7d1f3; /* Ändra färg här */
+  color: rgb(0, 0, 0);
+  min-height: 300px;
+
+  width: 100vw; /* Full bredd av viewporten */
+  margin-left: calc(-100vw / 2 + 50%); /* Centrera elementet */
+}
+.colored-box {
+  padding: 120px;
+}
+
 // footer
 footer {
   width: 100%;
