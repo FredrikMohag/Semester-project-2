@@ -12077,6 +12077,64 @@ h1, .h1 {
   background-color: #8ace00 !important; /* Förhindra blå bakgrund */
 }
 
+.sign-log-container {
+  display: none; /* Initialt dolda */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px; /* Justera storleken om du behöver */
+  cursor: pointer;
+  color: #000; /* Justera färg enligt din design */
+}
+
+.sign-log-container {
+  background-color: #e7d1f3;
+  width: 100%;
+  padding: 20px 0; /* Extra padding för att centrera innehållet bättre */
+  min-height: 300px;
+  width: 100vw; /* Full bredd av viewporten */
+  margin-left: calc(-50vw + 50%); /* Centrera elementet */
+}
+
+/* Placera sign-up-box till vänster */
+.sign-log-box {
+  max-width: 500px;
+  margin: 0 auto; /* Centrera boxen horisontellt */
+  position: relative;
+}
+
+/* Formulär centreras i boxen */
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrera formuläret horisontellt */
+  justify-content: center; /* Centrera formuläret vertikalt */
+}
+
+/* Formulärfält */
+.form-field {
+  border-radius: 50px; /* Rundade kanter */
+  text-align: center; /* Centrerar texten */
+  width: 300px; /* Full bredd på fälten */
+}
+
+.form-field:focus {
+  border-color: rgba(4, 4, 4, 0.4980392157);
+  outline: none; /* Ta bort standardfokuslinje */
+  box-shadow: none; /* Ta bort eventuella skuggor */
+}
+
+/* Placera etiketten ovanför inputfältet */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
 footer {
   position: relative;
   width: 100%;

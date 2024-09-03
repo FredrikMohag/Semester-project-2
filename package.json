@@ -1,7 +1,7 @@
 {
   "name": "semester-project-2",
   "version": "1.0.0",
-  "description": "To take the skills learned over the past three semesters and create an auction website.",
+  "description": "Semester Project 2 - Noroff",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
