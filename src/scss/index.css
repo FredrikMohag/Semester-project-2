@@ -11971,6 +11971,10 @@ footer {
   padding-right: 100px;
 }
 
+h1, .h1 {
+  font-size: 64px;
+}
+
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl, .navbar .container-xxl {
   padding-left: 0; /* Ta bort padding från container-fluid */
   padding-right: 0; /* Ta bort padding från container-fluid */
@@ -12034,7 +12038,7 @@ footer {
   transform: translateX(-50%);
 }
 
-.colored-box {
+.colored-rectangle {
   background-color: #e7d1f3; /* Ändra färg här */
   color: rgb(0, 0, 0);
   min-height: 300px;
@@ -12043,7 +12047,34 @@ footer {
 }
 
 .colored-box {
-  padding: 120px;
+  background-color: #e7d1f3; /* Bakgrundsfärg */
+  color: rgb(0, 0, 0); /* Textfärg */
+  padding-top: 50px;
+  padding-right: 100px;
+  text-align: right; /* Justerar texten och innehållet till höger */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Justerar allt innehåll till höger */
+}
+
+.get-started-btn {
+  background-color: #8ace00; /* Färg på rektangeln (grön) */
+  color: white;
+  padding: 10px 30px;
+  border-radius: 50px;
+  margin-top: 20px;
+  border: none; /* Tar bort eventuella ramar */
+  outline: none;
+}
+
+/* Lägg till en hover-effekt */
+.get-started-btn:hover {
+  background-color: #9ae603; /* Ändra färg vid hover */
+}
+
+/* Extra säkerhet för att nollställa blå bakgrund */
+.get-started-btn:active {
+  background-color: #8ace00 !important; /* Förhindra blå bakgrund */
 }
 
 footer {
@@ -12077,5 +12108,10 @@ footer {
   .footer-text {
     font-size: 8px;
     margin-left: 10px;
+  }
+  .colored-box {
+    padding-left: 25px;
+    padding-bottom: 30px;
+    text-align: left;
   }
 }/*# sourceMappingURL=index.css.map */
