@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction</title>
     <link rel="stylesheet" href="../dist/css/index.css" />
+    <script type="module" src="../src/main.mjs" defer></script>
     <script
       src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
@@ -21,12 +22,11 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <!-- Logotyp -->
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="../homepage/index.html">
             <img
               src="../images/logo.png"
               alt="Logo"
-              class="d-inline-block align-text-top"
-              style="height: 40px"
+              class="d-inline-block align-text-top logo"
             />
           </a>
 
@@ -78,20 +78,55 @@
     </header>
 
     <main>
-      <div class="colored-rectangle">
-        <div class="colored-box">
-          <h1>Welcome to Auction!</h1>
-          <p>
-            Discover the excitement of selling and buying through our platform.
-          </p>
-        </div>
-      </div>
-      <div class="main-listings mt-5">
-        <div class="Latest listings">
-          <h2>Latest listings</h2>
-        </div>
-        <div class="Popular listings">
-          <h2>Popular listings</h2>
+      <!-- Create Listing Form -->
+      <div id="createListingForm" class="create-listing-container">
+        <div class="sign-log-box p-4">
+          <!-- Formulär -->
+          <form class="form-content">
+            <div class="form-group mb-3">
+              <label for="item-name">Item</label>
+              <input
+                type="text"
+                id="item-name"
+                class="form-control form-field"
+                required
+              />
+            </div>
+            <div class="form-group mb-3">
+              <label for="item-description">Description</label>
+              <textarea
+                id="item-description"
+                class="form-control form-field"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group mb-3">
+              <label for="item-image-url">Image URL</label>
+              <input
+                type="url"
+                id="item-image-url"
+                class="form-control form-field"
+                required
+              />
+            </div>
+            <div class="form-group mb-3">
+              <label for="item-end-date">Ends At</label>
+              <input
+                type="datetime-local"
+                id="item-end-date"
+                class="form-control form-field"
+                required
+              />
+            </div>
+            <!-- Knapp -->
+            <button
+              type="submit"
+              class="btn btn-primary float-end get-started-btn"
+            >
+              Create
+            </button>
+          </form>
         </div>
       </div>
     </main>

@@ -11967,12 +11967,23 @@ textarea.form-control-lg {
 }
 body,
 footer {
+  height: 100%;
+  margin: 0;
   padding-left: 100px;
   padding-right: 100px;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 h1, .h1 {
   font-size: 64px;
+}
+
+.logo {
+  height: 40px;
 }
 
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl, .navbar .container-xxl {
@@ -12092,7 +12103,8 @@ h1, .h1 {
   color: #000; /* Justera färg enligt din design */
 }
 
-.sign-log-container {
+.sign-log-container,
+.create-listing-container {
   background-color: #e7d1f3;
   width: 100%;
   padding: 20px 0; /* Extra padding för att centrera innehållet bättre */
@@ -12118,7 +12130,7 @@ h1, .h1 {
 
 /* Formulärfält */
 .form-field {
-  border-radius: 50px; /* Rundade kanter */
+  border-radius: 20px; /* Rundade kanter */
   text-align: center; /* Centrerar texten */
   width: 300px; /* Full bredd på fälten */
 }
@@ -12156,7 +12168,13 @@ footer {
     padding-left: 0px;
     padding-right: 0px;
   }
-  .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl, .navbar .container-xxl {
+  .navbar,
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl,
+  .container-xxl {
     padding-left: 10px;
     padding-right: 10px;
   }
