@@ -62,13 +62,13 @@
             <!-- Navbar-länkar -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="home.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
+                <a class="nav-link" href="profile.html">Profile</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Log out</a>
+                <a class="nav-link" href="#" onclick="signOut()">Sign out</a>
               </li>
             </ul>
           </div>
@@ -78,7 +78,22 @@
     </header>
 
     <main>
+      <div class="profile-page mt-5">
+        <div class="profile">
+          <h2>Profile</h2>
+        </div>
+      </div>
+      <div class="custom-line"></div>
+      <div id="createListingForm" class="profile-container">
+        <div class="sign-log-box p-4"></div>
+      </div>
+      <div class="create-container mt-5">
+        <div class="profile">
+          <h2>Create listing</h2>
+        </div>
+      </div>
       <!-- Create Listing Form -->
+      <div class="custom-line"></div>
       <div id="createListingForm" class="create-listing-container">
         <div class="sign-log-box p-4">
           <!-- Formulär -->

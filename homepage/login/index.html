@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="../../dist/css/index.css" />
     <script type="module" src="../../src/main.mjs" defer></script>
     <script
-      src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+      src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
     ></script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <!-- Logotyp -->
-          <a class="navbar-brand" href="../homepage/index.html">
+          <a class="navbar-brand" href="../../homepage/index.html">
             <img
-              src="../images/logo.png"
+              src="../../images/logo.png"
               alt="Logo"
               class="d-inline-block align-text-top logo"
             />
@@ -42,6 +44,7 @@
           </button>
 
           <!-- Navbar-innehåll som kan kollapsa -->
+
           <div class="collapse navbar-collapse" id="navbarNav">
             <!-- Sökfunktion -->
             <form class="d-flex navbar-search mx-auto my-2 my-lg-0">
@@ -59,14 +62,13 @@
             <!-- Navbar-länkar -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#" onclick="toggleForm('signupForm')"
-                  >Sign Up</a
-                >
+                <a class="nav-link" href="home.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" onclick="toggleForm('loginForm')"
-                  >Log In</a
-                >
+                <a class="nav-link" href="profile.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" onclick="signOut()">Sign out</a>
               </li>
             </ul>
           </div>
@@ -74,7 +76,6 @@
       </nav>
       <div class="custom-line"></div>
     </header>
-
     <!-- Sign Up Form -->
     <div id="signupForm" class="sign-log-container">
       <div class="sign-log-box p-4">
@@ -175,5 +176,41 @@
         </form>
       </div>
     </div>
+
+    <!-- Main -->
+    <main>
+      <div class="colored-rectangle">
+        <div class="colored-box">
+          <h1>Welcome to Auction!</h1>
+          <p>
+            Discover the excitement of <br />
+            selling and buying through our platform.
+          </p>
+          <a
+            href="#"
+            class="btn btn-primary get-started-btn"
+            onclick="toggleForm('signupForm')"
+            >Get started</a
+          >
+        </div>
+      </div>
+      <div class="main-listings mt-5">
+        <div class="Latest listings">
+          <h2>Latest listings</h2>
+        </div>
+        <div class="Popular listings">
+          <h2>Popular listings</h2>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light text-dark py-2">
+      <hr class="custom-line" />
+      <div class="container-fluid text-end small footer-text">
+        Site designed and developed by Fredrik Mohag Håkansson. Copyright ©
+        2024
+      </div>
+    </footer>
   </body>
 </html>
