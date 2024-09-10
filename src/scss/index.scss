@@ -21,6 +21,7 @@ h2 {
 .logo {
   height: 40px;
 }
+
 .navbar .container-fluid {
   padding-left: 0; /* Ta bort padding från container-fluid */
   padding-right: 0; /* Ta bort padding från container-fluid */
@@ -175,6 +176,23 @@ h2 {
 .form-group label {
   display: block;
   margin-bottom: 5px;
+}
+// Latest & Popular listings
+.square-container {
+  display: flex;
+  justify-content: space-between; /* Lika mycket utrymme mellan kvadraterna */
+  gap: 10px; /* Mellanrum mellan kvadraterna */
+  flex-wrap: wrap; /* Tillåter kvadrater att bryta rad om det behövs */
+}
+
+.square {
+  flex-grow: 1; /* Låter kvadraterna växa jämnt */
+  aspect-ratio: 1 / 1; /* Behåller kvadratisk form (lika bredd och höjd) */
+  background-color: black;
+}
+
+.text-muted {
+  margin-top: 10px; /* Lägger lite avstånd ovanför "View all" */
 }
 
 // footer

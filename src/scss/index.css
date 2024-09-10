@@ -12152,6 +12152,23 @@ h2, .h2 {
   margin-bottom: 5px;
 }
 
+.square-container {
+  display: flex;
+  justify-content: space-between; /* Lika mycket utrymme mellan kvadraterna */
+  gap: 10px; /* Mellanrum mellan kvadraterna */
+  flex-wrap: wrap; /* Tillåter kvadrater att bryta rad om det behövs */
+}
+
+.square {
+  flex-grow: 1; /* Låter kvadraterna växa jämnt */
+  aspect-ratio: 1/1; /* Behåller kvadratisk form (lika bredd och höjd) */
+  background-color: black;
+}
+
+.text-muted {
+  margin-top: 10px; /* Lägger lite avstånd ovanför "View all" */
+}
+
 footer {
   position: relative;
   width: 100%;
