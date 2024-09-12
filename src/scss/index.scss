@@ -21,6 +21,13 @@ h2 {
 .logo {
   height: 40px;
 }
+.error-message {
+  color: red;
+  font-size: 0.6em;
+}
+.hidden {
+  display: none;
+}
 
 .navbar .container-fluid {
   padding-left: 0; /* Ta bort padding från container-fluid */

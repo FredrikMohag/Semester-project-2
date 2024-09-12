@@ -74,25 +74,23 @@
       </nav>
       <div class="custom-line"></div>
     </header>
-    <!-- Sign Up Form -->
+<!-- Sign Up Form -->
 <div id="signupForm" class="sign-log-container">
   <div class="sign-log-box p-4">
     <button class="close-btn" onclick="hideForm('signupForm')">
       <i class="bi bi-x"></i>
     </button>
     <!-- Formulär -->
-    <form id="signup-form" class="form-content" novalidate>
+    <form id="signup-form" class="form-content">
       <div class="form-group mb-3">
         <label for="signup-username">Username</label>
         <input
           type="text"
           id="signup-username"
           class="form-control form-field"
-          
-          pattern="^[a-zA-Z0-9_]+$"
-          title="Username can only contain letters, numbers, and underscores (_)."
           required
         />
+        <div id="signup-username-error" class="error-message"></div>
       </div>
       <div class="form-group mb-3">
         <label for="signup-email">Email</label>
@@ -100,11 +98,9 @@
           type="email"
           id="signup-email"
           class="form-control form-field"
-         
-          pattern="^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$"
-          title="Email must be a valid stud.noroff.no email address."
           required
         />
+        <div id="signup-email-error" class="error-message"></div>
       </div>
       <div class="form-group mb-3">
         <label for="signup-password">Password</label>
@@ -112,11 +108,9 @@
           type="password"
           id="signup-password"
           class="form-control form-field"
-          
-          minlength="8"
-          title="Password must be at least 8 characters long."
           required
         />
+        <div id="signup-password-error" class="error-message"></div>
       </div>
       <div class="form-group mb-3">
         <label for="signup-avatar">Avatar URL</label>
@@ -124,10 +118,8 @@
           type="url"
           id="signup-avatar"
           class="form-control form-field"
-         
-          pattern="https?://.+"
-          title="Avatar URL must be a valid and accessible URL."
         />
+        <div id="signup-avatar-error" class="error-message"></div>
       </div>
       <!-- Knapp -->
       <button
@@ -139,6 +131,7 @@
     </form>
   </div>
 </div>
+
 
 
     <!-- Log In Form -->
