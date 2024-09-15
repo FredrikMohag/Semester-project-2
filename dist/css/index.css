@@ -12288,6 +12288,11 @@ h2, .h2 {
   height: 40px;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.6em;
+}
+
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl, .navbar .container-xxl {
   padding-left: 0; /* Ta bort padding från container-fluid */
   padding-right: 0; /* Ta bort padding från container-fluid */
@@ -12388,10 +12393,6 @@ h2, .h2 {
 /* Extra säkerhet för att nollställa blå bakgrund */
 .get-started-btn:active {
   background-color: #8ace00 !important; /* Förhindra blå bakgrund */
-}
-
-.sign-log-container {
-  display: none; /* Initialt dolda */
 }
 
 .close-btn {

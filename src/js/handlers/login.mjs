@@ -1,19 +1,17 @@
 // src/js/handlers/login.mjs
-import { logIn } from "../api/auth/login.mjs";
 
-// Logga att login-handlers laddas korrekt
+import { login } from "../api/auth/login.mjs";
+
 console.log("Login handler loaded, waiting for form submission");
 
 export async function handleLogin(event) {
   event.preventDefault();
 
-  // Logga att hanteringen av inloggning påbörjas
   console.log("HandleLogin function called");
 
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
 
-  // Logga email och lösenord (undvik detta i produktionsmiljö av säkerhetsskäl)
   console.log("Email entered:", email);
   console.log("Password entered:", password);
 
@@ -43,11 +41,10 @@ export async function handleLogin(event) {
   if (valid) {
     console.log("Form is valid, attempting to log in...");
     try {
-      const response = await logIn({ email, password });
+      const response = await login({ email, password }, "/auth/login", "POST");
       console.log("Login response:", response); // Logga serverns respons
       alert("Login successful!");
 
-      // Logga accessToken om det finns
       const { accessToken } = response.data;
       console.log("AccessToken received:", accessToken);
 

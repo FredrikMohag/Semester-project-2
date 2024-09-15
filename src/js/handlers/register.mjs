@@ -1,13 +1,12 @@
-// src/js/handlers/signup.mjs
-import { signUp } from "../api/auth/signup.mjs";
+// src/js/handlers/register.mjs
 
-// Logga att signup-handlers laddas korrekt
+import { register } from "../api/auth/register.mjs";
+
 console.log("Signup handler loaded, waiting for form submission");
 
 export async function handleSignup(event) {
   event.preventDefault();
 
-  // Logga att hanteringen av signup påbörjas
   console.log("HandleSignup function called");
 
   const username = document.getElementById("signup-username").value;
@@ -15,7 +14,6 @@ export async function handleSignup(event) {
   const password = document.getElementById("signup-password").value;
   const avatarUrl = document.getElementById("signup-avatar").value;
 
-  // Logga vad användaren har angett
   console.log("Username entered:", username);
   console.log("Email entered:", email);
   console.log("Password entered:", password);
@@ -55,15 +53,21 @@ export async function handleSignup(event) {
   if (valid) {
     console.log("Form is valid, attempting to sign up...");
     try {
-      const response = await signUp({
-        name: username,
-        email,
-        password,
-        avatarUrl,
-      });
-      console.log("Signup response:", response); // Logga serverns svar
+      // Ensure correct method is used
+      await register(
+        {
+          name: username,
+          email,
+          password,
+          avatar: avatarUrl, // Include avatar if present
+        },
+        "/auth/register",
+        "POST"
+      ); // Ensure 'POST' is used
+      console.log("Signup response: Registration successful!");
       alert("Registration successful!");
-      // Hantera efter framgångsrik registrering
+      // Omdirigera till login-sidan
+      window.location.href = "/homepage/login/index.html";
     } catch (error) {
       console.error("Error during signup:", error.message);
       alert(`Error: ${error.message}`);

@@ -1,40 +1,70 @@
+// src/js/api/auth/login.mjs
+
 import { API_BASE_URL } from "../constants.mjs";
 import { getProfile } from "../profile/profileRead.mjs";
 import * as storage from "../../storage/index.mjs";
+import {
+  listingSubmitLoader,
+  listingSubmitLoaderOff,
+} from "../../handlers/listingSubmitLoader.mjs";
 
-// Kontrollera att alla importer fungerar
-console.log("API_BASE_URL:", API_BASE_URL);
-console.log("getProfile:", getProfile);
-console.log("storage:", storage);
+/**
+ * Logs in a user
+ * @param {object} profile - User profile
+ * @param {string} action - URL to fetch
+ * @param {string} method - HTTP method
+ */
+// src/js/api/auth/login.mjs
 
-export async function logIn({ email, password }) {
-  const payload = {
-    email,
-    password,
-  };
+export async function login(profile, action = "/auth/login", method = "POST") {
+  const loginURL = new URL(action, API_BASE_URL);
+  const body = JSON.stringify(profile);
 
-  console.log("Login payload:", payload);
-
+  let response;
   try {
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
-      method: "POST",
+    listingSubmitLoader();
+
+    response = await fetch(loginURL.href, {
+      method,
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body,
     });
 
     if (!response.ok) {
+      listingSubmitLoaderOff();
       const errorData = await response.json();
-      console.error("Login failed:", errorData.message);
-      throw new Error(errorData.message || "Failed to log in");
+      console.error("Error data:", errorData);
+
+      const errContainer = document.querySelector(`#error-container`);
+      if (errContainer) {
+        errContainer.innerHTML = "";
+        errorData.errors.forEach((error) => {
+          const errMsg = document.createElement("p");
+          errMsg.textContent = error.message;
+          errContainer.classList.remove("hidden");
+          errContainer.appendChild(errMsg);
+        });
+      } else {
+        console.error("Error container not found");
+      }
+      return;
     }
 
     const data = await response.json();
-    console.log("Login successful:", data);
-    return data;
+    const { accessToken, ...user } = data.data;
+
+    storage.save("token", accessToken);
+    storage.save("profile", user);
+
+    const profileData = await getProfile(user.name);
+    storage.save("credits", profileData.data.credits);
+
+    window.location.href = "/";
   } catch (error) {
-    console.error("Error during login:", error);
-    throw error;
+    listingSubmitLoaderOff();
+    console.error("Error during login:", error.message);
+    throw new Error(error);
   }
 }
