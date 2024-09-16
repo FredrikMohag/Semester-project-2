@@ -1,78 +1,92 @@
 // src/js/handlers/register.mjs
 
-import { register } from "../api/auth/register.mjs";
+import { registerUser } from "../api/auth/register.mjs"; // Importera registreringsfunktionen
 
-console.log("Signup handler loaded, waiting for form submission");
+/**
+ * Registrerar en användare
+ */
+export function setRegisterFormListener() {
+  const registerForm = document.querySelector("#signup-form"); // Hitta formuläret på sidan
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (event) => {
+      event.preventDefault(); // Förhindrar att sidan laddas om vid formulärsubmit
 
-export async function handleSignup(event) {
-  event.preventDefault();
+      // Samla in och validera formulärdata
+      const usernameElement = document.getElementById("signup-username");
+      const emailElement = document.getElementById("signup-email");
+      const passwordElement = document.getElementById("signup-password");
+      const avatarElement = document.getElementById("signup-avatar");
 
-  console.log("HandleSignup function called");
+      // Kontrollera att alla element finns
+      if (!usernameElement || !emailElement || !passwordElement) {
+        console.error("Ett eller flera formulärelement kunde inte hittas.");
+        return;
+      }
 
-  const username = document.getElementById("signup-username").value;
-  const email = document.getElementById("signup-email").value;
-  const password = document.getElementById("signup-password").value;
-  const avatarUrl = document.getElementById("signup-avatar").value;
+      // Använd `?.` för att säkert få värdet och trimma om elementet finns
+      const profile = {
+        name: usernameElement?.value.trim(),
+        email: emailElement?.value.trim(),
+        password: passwordElement?.value.trim(),
+        avatar: {
+          url: avatarElement?.value.trim() || "", // Om elementet finns, annars tom sträng
+          alt: "User's avatar",
+        },
+      };
 
-  console.log("Username entered:", username);
-  console.log("Email entered:", email);
-  console.log("Password entered:", password);
-  console.log("Avatar URL entered:", avatarUrl);
+      // Validera formuläret innan du skickar data
+      if (!validateRegisterForm(profile)) {
+        return; // Avsluta om valideringen misslyckas
+      }
 
-  let valid = true;
+      try {
+        await registerUser(profile); // Försök registrera användaren
+        console.log("Registration successful!");
+        alert("Registration successful! You can now log in.");
 
-  // Clear previous errors
+        // Omdirigera till inloggningssidan efter framgångsrik registrering
+        window.location.href = "/AUCTION/login/index.html";
+      } catch (error) {
+        console.error("Registration failed", error);
+        alert(`Registration error: ${error.message}`); // Visar felmeddelande om registreringen misslyckas
+      }
+    });
+  } else {
+    console.error("Register form not found");
+  }
+}
+
+/**
+ * Validerar registreringsformuläret
+ */
+function validateRegisterForm(profile) {
+  let isValid = true;
+
+  // Rensa tidigare felmeddelanden
   document
     .querySelectorAll(".error-message")
     .forEach((elem) => (elem.textContent = ""));
 
-  // Validate username
-  if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-    console.log("Invalid username:", username);
+  // Validera användarnamn (ej tomt och inga otillåtna tecken)
+  if (!/^[a-zA-Z0-9_]+$/.test(profile.name)) {
     document.getElementById("signup-username-error").textContent =
-      "Username: letters, numbers, or underscores (_) only.";
-    valid = false;
+      "Username must not contain punctuation symbols apart from underscore (_).";
+    isValid = false;
   }
 
-  // Validate email
-  if (!/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/.test(email)) {
-    console.log("Invalid email:", email);
+  // Validera e-post (endast tillåter stud.noroff.no-domänen)
+  if (!/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/.test(profile.email)) {
     document.getElementById("signup-email-error").textContent =
       "Email must be a valid stud.noroff.no email address.";
-    valid = false;
+    isValid = false;
   }
 
-  // Validate password
-  if (password.length < 8) {
-    console.log("Password too short:", password);
+  // Validera lösenord (minst 8 tecken)
+  if (profile.password.length < 8) {
     document.getElementById("signup-password-error").textContent =
       "Password must be at least 8 characters.";
-    valid = false;
+    isValid = false;
   }
 
-  if (valid) {
-    console.log("Form is valid, attempting to sign up...");
-    try {
-      // Ensure correct method is used
-      await register(
-        {
-          name: username,
-          email,
-          password,
-          avatar: avatarUrl, // Include avatar if present
-        },
-        "/auth/register",
-        "POST"
-      ); // Ensure 'POST' is used
-      console.log("Signup response: Registration successful!");
-      alert("Registration successful!");
-      // Omdirigera till login-sidan
-      window.location.href = "/homepage/login/index.html";
-    } catch (error) {
-      console.error("Error during signup:", error.message);
-      alert(`Error: ${error.message}`);
-    }
-  } else {
-    console.log("Form validation failed.");
-  }
+  return isValid;
 }

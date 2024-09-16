@@ -1,60 +1,52 @@
 // src/js/handlers/login.mjs
 
-import { login } from "../api/auth/login.mjs";
+import { login } from "../api/auth/logOn.mjs"; // Importera login-funktionen från auth-mappen
 
-console.log("Login handler loaded, waiting for form submission");
+let isLoginListenerSet = false; // För att hålla koll på om lyssnaren redan är satt
 
-export async function handleLogin(event) {
-  event.preventDefault();
+console.log("Login handler module loaded.");
 
-  console.log("HandleLogin function called");
+export function setLoginFormListener() {
+  if (isLoginListenerSet) return; // Om lyssnaren redan är satt, gör inget
 
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
+  const loginForm = document.querySelector("#login-form");
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-  console.log("Email entered:", email);
-  console.log("Password entered:", password);
+      const emailElement = document.getElementById("login-email");
+      const passwordElement = document.getElementById("login-password");
 
-  let valid = true;
+      if (!emailElement || !passwordElement) {
+        console.error("Ett eller flera formulärelement kunde inte hittas.");
+        return;
+      }
 
-  // Clear previous errors
-  document
-    .querySelectorAll(".error-message")
-    .forEach((elem) => (elem.textContent = ""));
+      const profile = {
+        email: emailElement.value.trim(),
+        password: passwordElement.value.trim(),
+      };
 
-  // Validate email
-  if (!/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/.test(email)) {
-    document.getElementById("login-email-error").textContent =
-      "Email must be a valid stud.noroff.no email address.";
-    console.log("Invalid email:", email);
-    valid = false;
-  }
+      console.log("Profile data for login:", profile);
 
-  // Validate password
-  if (password.length < 8) {
-    document.getElementById("login-password-error").textContent =
-      "Password must be at least 8 characters.";
-    console.log("Password too short:", password);
-    valid = false;
-  }
+      try {
+        const response = await login(profile);
+        console.log("Login successful!");
 
-  if (valid) {
-    console.log("Form is valid, attempting to log in...");
-    try {
-      const response = await login({ email, password }, "/auth/login", "POST");
-      console.log("Login response:", response); // Logga serverns respons
-      alert("Login successful!");
+        const { accessToken, name } = response.data;
+        localStorage.setItem("accessToken", accessToken); // Spara accessToken i localStorage
+        localStorage.setItem("username", name); // Spara användarnamnet i localStorage
 
-      const { accessToken } = response.data;
-      console.log("AccessToken received:", accessToken);
+        window.location.href = "/AUCTION/profile/index.html";
+      } catch (error) {
+        console.error("Login failed", error);
+        alert(`Error: ${error.message}`);
+      }
+    });
 
-      localStorage.setItem("accessToken", accessToken);
-      // Hantera efter framgångsrik inloggning
-    } catch (error) {
-      console.error("Error during login:", error.message);
-      alert(`Error: ${error.message}`);
-    }
+    console.log("Login handler loaded, waiting for form submission");
+    isLoginListenerSet = true;
   } else {
-    console.log("Form validation failed.");
+    console.error("Login form not found");
   }
 }
