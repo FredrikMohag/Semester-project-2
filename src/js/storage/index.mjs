@@ -1,3 +1,5 @@
+// src/js/storage/index.mjs
+
 export function save(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }

@@ -1,57 +1,31 @@
 // src/js/api/auth/register.mjs
 
-import { API_BASE_URL } from "../constants.mjs";
+import { authFetch } from "../authFetch.mjs"; // Korrekt import
 
-export async function register(
-  profile,
-  action = "/auth/register",
-  method = "POST"
-) {
-  const registerURL = new URL(action, API_BASE_URL);
-  const body = JSON.stringify(profile);
+export async function registerUser(profile) {
+  const registerEndpoint = "/auth/register"; // Endpoint istället för fullständig URL
 
-  console.log("Registration URL:", registerURL.href);
+  const userProfile = {
+    name: profile.name,
+    email: profile.email,
+    password: profile.password,
+    avatar: profile.avatar, // Valfritt
+  };
+
+  const body = JSON.stringify(userProfile);
+
   console.log("Request body:", body);
 
   try {
-    listingSubmitLoader();
-
-    const response = await fetch(registerURL.href, {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: method === "POST" ? body : undefined,
+    const response = await authFetch(registerEndpoint, {
+      method: "POST",
+      body,
     });
 
-    if (!response.ok) {
-      listingSubmitLoaderOff();
-      const errorData = await response.json();
-      console.error("Error data:", errorData);
-
-      const errContainer = document.querySelector(`#error-container`);
-      if (errContainer) {
-        errContainer.innerHTML = "";
-        errorData.errors.forEach((error) => {
-          const errMsg = document.createElement("p");
-          errMsg.textContent = error.message;
-          errContainer.classList.remove("hidden");
-          errContainer.appendChild(errMsg);
-        });
-      } else {
-        console.error("Error container not found");
-      }
-    } else {
-      const loginProfile = {
-        email: profile.email,
-        password: profile.password,
-      };
-      await login(loginProfile, "/auth/login", "POST");
-      window.location.href = "/homepage/login/index.html";
-    }
+    console.log("Registration successful:", response);
+    return response;
   } catch (error) {
-    listingSubmitLoaderOff();
-    console.error("Error during registration:", error);
-    throw new Error(error);
+    console.error("Error during registration:", error.message);
+    throw new Error(`Registration error: ${error.message}`);
   }
 }
