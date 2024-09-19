@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction</title>
     <link rel="stylesheet" href="../dist/css/index.css" />
-    <script type="module" src="../src/main.mjs" defer></script>
+    <script type="module" src="../src/js/main.mjs" defer></script>
     
     <script
       src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -63,7 +63,12 @@
             <!-- Navbar-länkar -->
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="../AUCTION/index.html">Home</a>
+                <a class="nav-link text-dark" href="../AUCTION/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="../AUCTION/listing/all/index.html"
+                  >Auctions</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="../AUCTION/profile/index.html">Profile</a>
@@ -71,7 +76,6 @@
               <li class="nav-item">
                 <a id="logout" class="nav-link" href="#">Log out</a>
               </li>
-              
             </ul>
           </div>
         </div>
@@ -98,33 +102,32 @@
       </div>
 
       <div class="main-listings mt-5">
-        <!-- Latest listings -->
-        <div class="d-flex flex-column">
-          <h2>Latest listings</h2>
-          <div class="square-container">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </div>
-          <div class="d-flex justify-content-end">
-            <a href="#" class="text-muted small">View all</a>
-          </div>
-        </div>
-      </div>
+       <!-- Latest listings -->
+
+       <!-- Latest listings -->
+<div class="d-flex flex-column">
+  <h2>Latest listings</h2>
+  <div id="latest-listings-container" class="square-container">
+    <!-- Listningarna kommer att renderas här -->
+  </div>
+  <div class="d-flex justify-content-end">
+    <a href="/AUCTION/listing/all/index.html"  class="text-muted small">View all</a>
+  </div>
+</div>
+
+
 
       <!-- Popular listings -->
-      <div class="justify-content-between align-items-center mt-3">
-        <h2>Popular listings</h2>
-        <div class="square-container">
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-          <div class="square"></div>
-        </div>
-        <div class="d-flex justify-content-end">
-          <a href="#" class="text-muted small">View all</a>
-        </div>
+<div class="d-flex flex-column mt-3">
+  <h2>Popular listings</h2>
+  <div id="popular-listings-container" class="square-container">
+    <!-- Listningarna kommer att renderas här -->
+  </div>
+  <div class="d-flex justify-content-end">
+    <a href="/AUCTION/listing/all/index.html" class="text-muted small">View all</a>
+  </div>
+</div>
+
     </main>
 
     <!-- Footer -->

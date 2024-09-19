@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction</title>
     <link rel="stylesheet" href="../../dist/css/index.css" />
-    <script type="module" src="../../src/main.mjs" defer></script>
+    <script type="module" src="../../src/js/main.mjs" defer></script>
+
     <script
       src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
@@ -82,7 +83,7 @@
     <!-- Main -->
     <main>
       <!-- Sign Up Form -->
-      <div id="signupForm" class="sign-log-container">
+      <div id="registrationForm" class="sign-log-container">
         <div class="sign-log-box p-4">
           <button id="closeSignup" class="close-btn"></button>
           <!-- Formulär -->
@@ -92,6 +93,7 @@
               <input
                 type="text"
                 id="signup-username"
+                name="name"
                 class="form-control form-field"
                 required
               />
@@ -102,6 +104,7 @@
               <input
                 type="email"
                 id="signup-email"
+                name="email"
                 class="form-control form-field"
                 required
               />
@@ -112,6 +115,7 @@
               <input
                 type="password"
                 id="signup-password"
+                name="password"
                 class="form-control form-field"
                 required
               />
@@ -122,10 +126,13 @@
               <input
                 type="url"
                 id="signup-avatar"
+                name="avatar"
                 class="form-control form-field"
               />
               <div id="signup-avatar-error" class="error-message"></div>
             </div>
+            <div id="error-container" class="error-container hidden"></div>
+
             <!-- Knapp -->
             <button
               type="submit"

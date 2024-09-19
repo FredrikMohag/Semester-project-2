@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auction</title>
     <link rel="stylesheet" href="../../dist/css/index.css" />
-    <script type="module" src="../../src/main.mjs" defer></script>
+    <script type="module" src="../../src/js/main.mjs" defer></script>
     <script
       src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
       defer
@@ -22,7 +22,7 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <!-- Logotyp -->
-          <a class="navbar-brand" href="../homepage/index.html">
+          <a class="navbar-brand" href="../../AUCTION/index.html">
             <img
               src="../../images/logo.png"
               alt="Logo"
@@ -65,7 +65,14 @@
                 <a class="nav-link" href="../../AUCTION/index.html">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../profile/index.html">Profile</a>
+                <a class="nav-link " href="../../AUCTION/listing/all/index.html"
+                  >Auctions</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="../profile/index.html"
+                  >Profile</a
+                >
               </li>
               <li class="nav-item">
                 <a id="logout" class="nav-link" href="#">Log out</a>
@@ -78,72 +85,74 @@
     </header>
 
     <main>
+      <!-- Profilsidan -->
       <div class="profile-page mt-5">
         <div class="profile">
           <h2>Profile</h2>
         </div>
       </div>
       <div class="custom-line"></div>
-      <div id="createListingForm" class="profile-container">
-        <div class="sign-log-box p-4"></div>
+      <div class="profile-container">
+        
+          <!-- Användarinformationen visas här -->
+          <!-- Användarens avatar -->
+          <img
+            id="profile-avatar"
+            src=""
+            alt="User Avatar"
+            class="profile-avatar"
+          />
+
+          <!-- Om mig -->
+          <h3>About Me</h3>
+          <p id="profile-email"></p>
+
+          <!-- Krediter -->
+          <h3>Credits</h3>
+          <p id="profile-credits"></p>
+
+          <!-- Mina listningar -->
+          <h3>My Listings</h3>
+          <ul id="profile-listings"></ul>
+
+          <!-- Mina bud -->
+          <h3>My Bids</h3>
+          <ul id="profile-bids"></ul>
+        </div>
       </div>
+
       <div class="create-container mt-5">
         <div class="profile">
           <h2>Create listing</h2>
         </div>
-      </div>
-      <!-- Create Listing Form -->
-      <div class="custom-line"></div>
-      <div id="createListingForm" class="create-listing-container">
-        <div class="sign-log-box p-4">
-          <!-- Formulär -->
-          <form class="form-content">
-            <div class="form-group mb-3">
-              <label for="item-name">Item</label>
-              <input
-                type="text"
-                id="item-name"
-                class="form-control form-field"
-                required
-              />
-            </div>
-            <div class="form-group mb-3">
-              <label for="item-description">Description</label>
-              <textarea
-                id="item-description"
-                class="form-control form-field"
-                rows="3"
-                required
-              ></textarea>
-            </div>
-            <div class="form-group mb-3">
-              <label for="item-image-url">Image URL</label>
-              <input
-                type="url"
-                id="item-image-url"
-                class="form-control form-field"
-                required
-              />
-            </div>
-            <div class="form-group mb-3">
-              <label for="item-end-date">Ends At</label>
-              <input
-                type="datetime-local"
-                id="item-end-date"
-                class="form-control form-field"
-                required
-              />
-            </div>
-            <!-- Knapp -->
-            <button
-              type="submit"
-              class="btn btn-primary float-end get-started-btn"
-            >
-              Create
-            </button>
-          </form>
+      
+        <!-- Create Listing Form -->
+        <div class="custom-line"></div>
+        <div id="createListingForm" class="create-listing-container">
+          <div class="sign-log-box p-4">
+            <form id="create-listing-form" class="form-content">
+              <div class="form-group mb-3">
+                <label for="item-name">Item</label>
+                <input type="text" id="item-name" class="form-control form-field" required />
+              </div>
+              <div class="form-group mb-3">
+                <label for="item-description">Description</label>
+                <textarea id="item-description" class="form-control form-field" rows="3" required></textarea>
+              </div>
+              <div class="form-group mb-3">
+                <label for="item-image-url">Image URL</label>
+                <input type="url" id="item-image-url" class="form-control form-field" required />
+              </div>
+              <div class="form-group mb-3">
+                <label for="item-end-date">Ends At</label>
+                <input type="datetime-local" id="item-end-date" class="form-control form-field" required />
+              </div>
+              <button type="submit" class="btn btn-primary float-end get-started-btn">Create</button>
+            </form>
+          </div>
         </div>
       </div>
+      
     </main>
 
     <!-- Footer -->
