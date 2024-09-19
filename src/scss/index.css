@@ -11995,6 +11995,10 @@ h2, .h2 {
   font-size: 0.6em;
 }
 
+.bg-light {
+  background-color: transparent !important;
+}
+
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl, .navbar .container-xxl {
   padding-left: 0; /* Ta bort padding från container-fluid */
   padding-right: 0; /* Ta bort padding från container-fluid */
@@ -12166,8 +12170,30 @@ h2, .h2 {
   background-color: black;
 }
 
+.square-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.square {
+  width: calc(25% - 20px);
+  background-color: #f9f9f9;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.listing-image {
+  width: 100%;
+  height: auto;
+}
+
 .text-muted {
   margin-top: 10px; /* Lägger lite avstånd ovanför "View all" */
+}
+
+.profile-container {
+  padding-left: 100px;
 }
 
 footer {
