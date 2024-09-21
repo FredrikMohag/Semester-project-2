@@ -32,7 +32,7 @@ async function handleLoginSubmit(event) {
     alert("Inloggning lyckades!");
 
     // Omdirigera efter att användaren stänger alerten
-    window.location.href = "/"; // Anpassa sökvägen om det behövs
+    window.location.href = `/user/${user.id}`; // Anpassa sökvägen om det behövs
   } catch (error) {
     console.error("Login failed", error);
     alert(`Error: ${error.message}`);
