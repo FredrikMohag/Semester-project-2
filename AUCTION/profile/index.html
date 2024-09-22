@@ -47,17 +47,18 @@
 
           <div class="collapse navbar-collapse" id="navbarNav">
             <!-- Sökfunktion -->
-            <form class="d-flex navbar-search mx-auto my-2 my-lg-0">
-              <div class="input-wrapper d-flex w-100">
-                <i class="bi bi-search align-self-center me-2"></i>
-                <input
-                  class="form-control"
-                  type="search"
-                  placeholder="Find your favourite item"
-                  aria-label="Search"
-                />
-              </div>
-            </form>
+<form class="d-flex navbar-search mx-auto my-2 my-lg-0" id="search-form">
+  <div class="input-wrapper d-flex w-100">
+    <i class="bi bi-search align-self-center me-2"></i>
+    <input
+      class="form-control"
+      type="search"
+      placeholder="Find your favourite item"
+      aria-label="Search"
+      id="search-input"
+    />
+  </div>
+</form>
 
             <!-- Navbar-länkar -->
             <ul class="navbar-nav ms-auto">
@@ -98,13 +99,18 @@
           <!-- Användarens avatar -->
           <img
             id="profile-avatar"
-            src=""
+            
             alt="User Avatar"
             class="profile-avatar"
           />
+          <button id="edit-avatar-button" class="edit-icon bi bi-pencil-square"></button>
+
+
+            
 
           <!-- Om mig -->
           <h3>About Me</h3>
+          <p id="profile-name"></p>
           <p id="profile-email"></p>
 
           <!-- Krediter -->
@@ -127,31 +133,35 @@
         </div>
       
         <!-- Create Listing Form -->
-        <div class="custom-line"></div>
-        <div id="createListingForm" class="create-listing-container">
-          <div class="sign-log-box p-4">
-            <form id="create-listing-form" class="form-content">
-              <div class="form-group mb-3">
-                <label for="item-name">Item</label>
-                <input type="text" id="item-name" class="form-control form-field" required />
-              </div>
-              <div class="form-group mb-3">
-                <label for="item-description">Description</label>
-                <textarea id="item-description" class="form-control form-field" rows="3" required></textarea>
-              </div>
-              <div class="form-group mb-3">
-                <label for="item-image-url">Image URL</label>
-                <input type="url" id="item-image-url" class="form-control form-field" required />
-              </div>
-              <div class="form-group mb-3">
-                <label for="item-end-date">Ends At</label>
-                <input type="datetime-local" id="item-end-date" class="form-control form-field" required />
-              </div>
-              <button type="submit" class="btn btn-primary float-end get-started-btn">Create</button>
-            </form>
-          </div>
-        </div>
+<div class="custom-line"></div>
+<div id="createListingContainer" class="create-listing-container"> <!-- Ändrat id för div till createListingContainer -->
+  <div class="sign-log-box p-4">
+    <form id="createListingForm" class="form-content"> <!-- Behåll id för formuläret -->
+      <div class="form-group mb-3">
+        <label for="item-name">Item</label>
+        <input type="text" id="item-name" class="form-control form-field" required />
       </div>
+
+      <div class="form-group mb-3">
+        <label for="item-description">Description</label>
+        <textarea id="item-description" class="form-control form-field" rows="3" required></textarea>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="item-image-url">Image URL</label>
+        <input type="url" id="item-image-url" class="form-control form-field" required />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="item-end-date">Ends At</label>
+        <input type="datetime-local" id="item-end-date" class="form-control form-field" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary float-end get-started-btn">Create</button>
+    </form>
+  </div>
+</div>
+
       
     </main>
 
