@@ -16,29 +16,29 @@ function getGreeting() {
 }
 
 export async function renderProfile() {
-  const user = storage.load("userProfile"); // Hämta användarens profil från localStorage
+  const user = storage.load("userProfile");
   if (!user || !user.name) {
     console.error("No user found in storage.");
-    // Omdirigera till inloggningssidan om användaren inte är inloggad
     window.location.href = "/AUCTION/login/index.html";
     return;
   }
 
-  // Dynamiskt uppdatera hälsning med användarnamn baserat på tid
   const greetingElement = document.getElementById("greeting");
   if (greetingElement) {
-    const greetingMessage = `${getGreeting()}, ${user.name}`; // Dynamisk hälsning
-    greetingElement.textContent = greetingMessage; // Visa hälsningen i h2
+    const greetingMessage = `${getGreeting()}, ${user.name}`;
+    greetingElement.textContent = greetingMessage;
   }
 
   try {
     const profileData = await getProfile(user.name);
     if (profileData) {
-      // Visa avatar
       const avatarElement = document.getElementById("profile-avatar");
       if (avatarElement) {
         avatarElement.src =
-          profileData.avatar?.url || "../../images/default-avatar.png";
+          profileData.avatar?.url || "../../../images/default-avatar.png";
+        avatarElement.style.width = "200px";
+        avatarElement.style.height = "200px";
+        avatarElement.style.objectFit = "cover";
       }
 
       // Visa e-post
@@ -57,7 +57,7 @@ export async function renderProfile() {
       // Visa användarens listningar
       const listingsElement = document.getElementById("profile-listings");
       if (listingsElement) {
-        listingsElement.innerHTML = ""; // Rensa tidigare innehåll
+        listingsElement.innerHTML = "";
         if (profileData.listings && profileData.listings.length > 0) {
           profileData.listings.forEach((listing) => {
             const listItem = document.createElement("li");
@@ -72,7 +72,7 @@ export async function renderProfile() {
       // Visa användarens bud (wins)
       const bidsElement = document.getElementById("profile-bids");
       if (bidsElement) {
-        bidsElement.innerHTML = ""; // Rensa tidigare innehåll
+        bidsElement.innerHTML = "";
         if (profileData.wins && profileData.wins.length > 0) {
           profileData.wins.forEach((win) => {
             const listItem = document.createElement("li");

@@ -28,9 +28,12 @@ export default function router() {
     case "/AUCTION/listing/all":
     case "/AUCTION/listing/all/index":
       console.log("All listings page detected. Rendering all listings.");
-      import("./handlers/allListings.mjs").then(({ renderAllListings }) => {
-        renderAllListings();
-      });
+      import("./handlers/allListings.mjs").then(
+        ({ renderAllListings, searchListings }) => {
+          renderAllListings(); // Rendera alla listningar
+          bindSearchForm(searchListings); // Binda sökformuläret till searchListings
+        }
+      );
       break;
 
     case "/AUCTION/listing/single":
@@ -62,14 +65,23 @@ export default function router() {
     case "/AUCTION/profile":
     case "/AUCTION/profile/index":
       console.log("Profile page detected. Setting profile listeners.");
+
+      // Hantera skapande av nya listningar och rendering av befintliga
       import("./handlers/createListing.mjs").then(
         ({ handleCreateListingForm, renderUserListings }) => {
           handleCreateListingForm(); // Hantera skapande av nya listningar
           renderUserListings(); // Rendera användarens befintliga listningar
         }
       );
+
+      // Hantera rendering av användarens profil
       import("./handlers/profile.mjs").then(({ renderProfile }) => {
         renderProfile();
+      });
+
+      // Dynamiskt ladda editAvatar endast på profilsidan
+      import("./api/profile/editAvatar.mjs").then(({ editAvatar }) => {
+        bindEditAvatar(editAvatar);
       });
       break;
 
@@ -89,5 +101,31 @@ export default function router() {
       .catch((error) => {
         console.error("Failed to load logout.mjs:", error);
       });
+  }
+}
+
+// Funktion för att binda editAvatar på profilsidan
+function bindEditAvatar(editAvatar) {
+  const editIcon = document.getElementById("edit-icon");
+
+  if (editIcon) {
+    editIcon.addEventListener("click", editAvatar);
+  }
+}
+
+// Funktion för att binda searchListings till sökformuläret
+function bindSearchForm(searchListings) {
+  const searchForm = document.getElementById("search-form");
+  const searchInput = document.getElementById("search-input");
+
+  if (searchForm) {
+    searchForm.addEventListener("submit", (event) => {
+      event.preventDefault(); // Förhindra att sidan laddas om
+
+      const query = searchInput.value;
+      if (query.trim() !== "") {
+        searchListings(query); // Kör sökningen med användarens sökfråga
+      }
+    });
   }
 }

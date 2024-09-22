@@ -1,5 +1,3 @@
-// src/js/main.mjs
-
 import router from "./router.mjs";
 import { createApiKey } from "./api/fetch/headers.mjs"; // Använd headers för API-nyckel
 

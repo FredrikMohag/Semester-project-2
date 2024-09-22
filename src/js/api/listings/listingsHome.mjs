@@ -1,41 +1,29 @@
-// api/listings/listingsHome.mjs
+// src/js/api/listings/listingsHome.mjs
 
 import { API_BASE, API_AUCTIONS } from "../constants.mjs";
 
 /**
- * Hämtar de senaste listningarna (begränsat till 4)
- * @returns {Array} - En lista över senaste listningarna
+ * Hämtar alla listningar, med valfri sökfråga
+ * @param {string} query - Söksträng som används för att filtrera listningarna
+ * @returns {Array} - En lista över matchande listningar
  */
-export async function fetchLatestListings() {
-  const url = `${API_BASE}${API_AUCTIONS}/listings?_sort=created&_order=desc&_limit=4`;
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Failed to fetch latest listings");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching latest listings:", error);
-    throw error;
-  }
-}
+export async function fetchAllListings(query = "") {
+  let url = `${API_BASE}${API_AUCTIONS}/listings`;
 
-/**
- * Hämtar de populära listningarna baserat på bud (begränsat till 4)
- * @returns {Array} - En lista över populära listningar
- */
-export async function fetchPopularListings() {
-  const url = `${API_BASE}${API_AUCTIONS}/listings?_sort=bids&_order=desc&_limit=4`;
+  // Om en sökfråga finns, lägg till den som en query parameter
+  if (query) {
+    url += `?q=${encodeURIComponent(query)}`;
+  }
+
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error("Failed to fetch popular listings");
+      throw new Error("Failed to fetch listings");
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching popular listings:", error);
+    console.error("Error fetching listings:", error);
     throw error;
   }
 }

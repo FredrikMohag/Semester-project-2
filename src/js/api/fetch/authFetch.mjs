@@ -13,6 +13,14 @@ export async function authFetch(url, fetchMethod = "GET", body = null) {
       throw new Error("Access token not found. Please log in.");
     }
 
+    // Normalisera fetchMethod till stora bokstäver och kontrollera att det är en giltig HTTP-metod
+    const validMethods = ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"];
+    const method = fetchMethod.toUpperCase();
+
+    if (!validMethods.includes(method)) {
+      throw new Error(`Invalid HTTP method: ${fetchMethod}`);
+    }
+
     // Bygg headers med access token och API_KEY
     const headers = {
       "Content-Type": "application/json",
@@ -22,13 +30,14 @@ export async function authFetch(url, fetchMethod = "GET", body = null) {
 
     // Bygg fetch-alternativen
     const options = {
-      method: fetchMethod,
+      method: method,
       headers: headers,
       cache: "no-store", // Inaktivera cache
     };
 
-    if (body) {
-      options.body = JSON.stringify(body); // Om body skickas, gör det till JSON
+    // Om det är en metod som inte använder body (som GET eller HEAD), ta bort body
+    if (body && method !== "GET" && method !== "HEAD") {
+      options.body = JSON.stringify(body); // Om body skickas och metoden tillåter det, gör det till JSON
     }
 
     // Utför fetch-anropet
